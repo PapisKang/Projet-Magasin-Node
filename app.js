@@ -11,9 +11,9 @@ app.use(bodyparser.json());
 var mysqlConnection=mysql.createConnection({
   host:"localhost",
   user:"root",
-  password:"root",
+  password:"",
   database:"magasin",
-  socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
+  //socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 });
 
 mysqlConnection.connect((err) => {

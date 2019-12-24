@@ -1,0 +1,27 @@
+{
+  "name": "starter-kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/eilco-architecture-ing3/starter-kit.git"
+  },
+  "author": "Guillaume Perez <contact@guillaumeperez.fr>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/eilco-architecture-ing3/starter-kit/issues"
+  },
+  "homepage": "https://gitlab.com/eilco-architecture-ing3/starter-kit#readme",
+  "dependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-jsdoc": "^18.0.1",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}
