@@ -10,7 +10,6 @@ stages:
   - build
 
 build:
-  stage: build
   image: node:latest
   script:
     - npm i && npm run build
