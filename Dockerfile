@@ -13,7 +13,7 @@ COPY . /usr/src/app
 
 # replace this with your application's default port
 EXPOSE 5000
-CMD [ "npm", "start" ]
+CMD [ "npm", "app.js" ]
 
 
 
