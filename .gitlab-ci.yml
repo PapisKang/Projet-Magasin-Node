@@ -29,7 +29,7 @@ test_db:
     - npm install
  #   - node ./specs/start.js ./specs/db-postgres.spec.js
 
-stage:
+stages:
   - docker
   
   
