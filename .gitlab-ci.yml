@@ -1,5 +1,6 @@
 stages:
   - build
+  - docker
 
 build:
   stage: build
@@ -9,3 +10,15 @@ build:
   artifacts:
     paths:
     - build/
+    
+    
+docker:
+  stage: docker
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - apk add --update py-pip && pip install docker-compose
+    - docker login -u gitlab-ci-token -p "eHMnGUKVhikh1uEAjMpr" "registry.gitlab.com"
+    - docker-compose build
+    - docker push "registry.gitlab.com/nlabbe/gitlab-workshop"
