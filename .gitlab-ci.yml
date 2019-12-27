@@ -11,20 +11,7 @@ services:
   - redis:latest
   - postgres:latest
  
-stage:
-  - docker
-  
-  
-  docker:
-  stage: docker
-  image: docker:latest
-  services:
-    - docker:dind
-  script:
-    - apk add --update py-pip && pip install docker-compose
-    - docker login -u papengagne1997@gmail.com -p "Papiskang123456789" "registry.gitlab.com"
-    - docker-compose build
-    - docker push registry.gitlab.com/architecture-logicielle/magasinnode
+
 
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
@@ -41,3 +28,18 @@ test_db:
   script:
     - npm install
  #   - node ./specs/start.js ./specs/db-postgres.spec.js
+
+stage:
+  - docker
+  
+  
+  docker:
+  stage: docker
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - apk add --update py-pip && pip install docker-compose
+    - docker login -u papengagne1997@gmail.com -p "Papiskang123456789" "registry.gitlab.com"
+    - docker-compose build
+    - docker push registry.gitlab.com/architecture-logicielle/magasinnode
