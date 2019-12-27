@@ -6,5 +6,6 @@ build:
   image: node:latest
   script:
     - npm i && npm run build
-  artifacts:paths:
+  artifacts:
+    paths:
     - build/
