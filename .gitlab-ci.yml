@@ -11,7 +11,8 @@ services:
   - redis:latest
   - postgres:latest
  
-
+stages:
+  - docker
 
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
@@ -29,8 +30,7 @@ test_db:
     - npm install
  #   - node ./specs/start.js ./specs/db-postgres.spec.js
 
-stages:
-  - docker
+
   
   
   docker:
