@@ -19,9 +19,6 @@ build:
   paths:
     - build/
     
-    stages:
-  - build
-  - test
 
 # ...
 
