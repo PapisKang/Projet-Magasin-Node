@@ -19,9 +19,9 @@ docker:
     - docker:dind
   script:
     - apk add --update py-pip && pip install docker-compose
-    - docker login -u gitlab-ci-token -p "eHMnGUKVhikh1uEAjMpr" "registry.gitlab.com"
+    - docker login -u papengagne1997@gmail.com -p "Papiskang123456789" "registry.gitlab.com"
     - docker-compose build
-    - docker push "registry.gitlab.com/nlabbe/gitlab-workshop"
+    - docker push "registry.gitlab.com/architecture-logicielle/magasinnode"
     
 services:
   - mysql:latest
