@@ -8,7 +8,6 @@ image: node:latest
 # Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
 stages:
   - build
-  - docker
 
 build:
   stage: build
@@ -20,36 +19,3 @@ build:
     - build/
     
 
-  
-  docker:
-  stage: docker
-  image: docker:latest
-  services:
-    - docker:dind
-  script:
-    - apk add --update py-pip && pip install docker-compose
-    - docker login -u gitlab-ci-token -p "eHMnGUKVhikh1uEAjMpr" "registry.gitlab.com"
-    - docker-compose build
-    - docker push "registry.gitlab.com/nlabbe/gitlab-workshop"
-    
-    
-services:
-  - mysql:latest
-  - redis:latest
-  - postgres:latest
-
-# This folder is cached between builds
-# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
-cache:
-  paths:
-    - node_modules/
-
-test_async:
-  script:
-    - npm install
-   # - node ./specs/start.js ./specs/async.spec.js
-
-test_db:
-  script:
-    - npm install
-   # - node ./specs/start.js ./specs/db-postgres.spec.js
