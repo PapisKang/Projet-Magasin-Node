@@ -5,7 +5,7 @@ build:
   stage: build
   image: node:latest
   script:
-    - npm i && npm run build
+    - npm i 
   artifacts:
   paths:
     - build/
@@ -15,5 +15,5 @@ test:
   stage: test
   image: node:latest
   script:
-    - npm i && npm test -- --coverage
+    - npm i  -- --coverage
   coverage: /All files\s*\|\s*([\d\.]+)/
