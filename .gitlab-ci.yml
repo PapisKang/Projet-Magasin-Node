@@ -35,11 +35,13 @@ cache:
     - node_modules/
 
 test_async:
+  stage: .post
   script:
     - npm install
    # - node ./specs/start.js ./specs/async.spec.js
 
 test_db:
+  stage: .post
   script:
     - npm install
    # - node ./specs/start.js ./specs/db-postgres.spec.js
