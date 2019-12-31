@@ -3,6 +3,7 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const xmlparser = require('express-xml-bodyparser');
 
+app.get('/',(req,res)=> res.send('hello world'));
 
 var app = express();
 app.use(xmlparser());
