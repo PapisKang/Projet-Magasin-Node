@@ -48,6 +48,7 @@ test:
   
 test_linter:
   stage: .post
+  image: node:latest
   script:
     - npm install eslint --save-dev
     - npx eslint *.js
