@@ -41,6 +41,7 @@ test:
   stage: test
   image: node:latest
   script:
+    - npm install --save-dev nyc
     - npm i && npm test -- --coverage
   coverage: /All files\s*\|\s*([\d\.]+)/  
   
