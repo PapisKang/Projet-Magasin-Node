@@ -42,6 +42,17 @@ app.get('/api/produits',(req,res) => {
   })
 });
 
+
+
+app.get('/api/ventes',(req,res) => {
+  mysqlConnection.query('SELECT * FROM ventes',(err, rows, fields) => {
+  if(!err)
+    res.send(rows);
+  else
+    console.log(err);
+  })
+});
+
 app.get('/api/produits/enstock',(req,res) => {
   mysqlConnection.query('SELECT produit.id,nom,categorie,valeur,quantite FROM produit,prix,stock where produit.id=prix.produit_id and produit.id=stock.produit_id and quantite>0 group by produit.id,nom,categorie,valeur,quantite',(err, rows, fields) => {
   if(!err)
@@ -64,7 +75,7 @@ app.get('/api/allstock',(req,res) => {
 
 app.post('/api/produit',(req,res) => {
   let content= req.body;
-  console.log(content)
+
   var sql= "INSERT INTO produit (nom,categorie) VALUES (?, ?)";
   mysqlConnection.query(sql,[content.nom,content.categorie],(err, rows, fields) => {
   if(!err)
@@ -90,10 +101,10 @@ app.post('/api/produit/vente',(req,res) => {
   let content= req.body;
   var itempaniers=JSON.parse(content.itempaniers);
   var idvente=JSON.parse(content.idvente);
-  
+
   var values="";
 
-  for (var i=0;i<ob.length; i++) {
+  for (var i=0;i<itempaniers.length; i++) {
     values += "("+ itempaniers[i].produit.id + ","+idvente.ID+","+itempaniers[i].quantite+"),"  ;
   }
   values=values.substring(0, values.length - 1);
@@ -168,7 +179,7 @@ app.get('/api/prix/:idProduit',(req,res) => {
 });
 
 app.get('/api/vente/:id',(req,res) => {
-  mysqlConnection.query('SELECT * FROM vente WHERE id = ?',[req.params.id],(err, rows, fields) => {
+  mysqlConnection.query('SELECT produit.nom,produit.categorie,produit_vente.quantite,prix.valeur FROM produit,ventes,produit_vente,prix WHERE ventes.id = ? and prix.produit_id=produit.id  and produit.id=produit_vente.produit_id and ventes.id=produit_vente.vente_id',[req.params.id],(err, rows, fields) => {
     if(!err)
       res.send(rows);
     else
@@ -207,6 +218,18 @@ app.put('/api/stock',(req,res) => {
   let content= req.body;
   var sql= "UPDATE stock SET dates= ? ,quantite = ? WHERE produit_id = ?";
   mysqlConnection.query(sql,[content.date,content.quantite,content.produit.id],(err, rows, fields) => {
+  if(!err)
+    res.send('Updated successfully');
+  else
+    console.log(err);
+  })
+});
+
+
+app.put('/api/prix',(req,res) => {
+  let content= req.body;
+  var sql= "UPDATE prix SET valeur = ? WHERE produit_id = ?";
+  mysqlConnection.query(sql,[content.valeur,content.produit.id],(err, rows, fields) => {
   if(!err)
     res.send('Updated successfully');
   else
