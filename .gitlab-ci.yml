@@ -1,6 +1,7 @@
 stages:
   - build
   - docker
+  - test
 
 build:
   stage: build
@@ -35,14 +36,13 @@ cache:
   paths:
     - node_modules/
 
-testcov:
-  stage: .post
+  
+test:
+  stage: test
   image: node:latest
   script:
     - npm i && npm test -- --coverage
-  coverage: /All files\s*\|\s*([\d\.]+)/
-  
-  
+  coverage: /All files\s*\|\s*([\d\.]+)/  
   
 #test_async:
  # stage: .post
