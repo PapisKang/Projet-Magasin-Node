@@ -35,6 +35,15 @@ cache:
   paths:
     - node_modules/
 
+coverage:
+  stage: test
+  image: node:latest
+  script:
+    - npm i && npm test -- --coverage
+  coverage: /All files\s*\|\s*([\d\.]+)/
+  
+  
+  
 #test_async:
  # stage: .post
  # script:
