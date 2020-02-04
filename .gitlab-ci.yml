@@ -49,6 +49,7 @@ test:
 test_linter:
   stage: .post
   script:
+    - npm install eslint --save-dev
     - npx eslint *.js
 
 #test_db:
