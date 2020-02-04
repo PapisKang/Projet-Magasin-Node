@@ -35,8 +35,8 @@ cache:
   paths:
     - node_modules/
 
-coverage:
-  stage: test
+testcov:
+  stage: .post
   image: node:latest
   script:
     - npm i && npm test -- --coverage
