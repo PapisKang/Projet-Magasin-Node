@@ -16,11 +16,12 @@ app.use(function (req, res, next) {
 })
 
 var mysqlConnection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'magasin',
-  socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
+  host : 'localhost',
+  user : 'root',
+  password : '',
+  port : 3306,
+  database : 'magasin'
+  //socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 })
 
 mysqlConnection.connect((err) => {
